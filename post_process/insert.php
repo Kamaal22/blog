@@ -1,7 +1,7 @@
 <?php 
     require_once '../db_connect.php'; 
 
-    if(isset($_POST['btnReg']) && isset($_FILES['avatar'])){
+    //if(isset($_POST['btnReg']) && isset($_FILES['avatar'])){
 
         $postTitle =  htmlspecialchars($_POST['postTitle']);
         $postContent  = htmlspecialchars($_POST['postContent']);
@@ -43,8 +43,8 @@
         }
 
 
-        if ((( $filetype == "image/png") || ( $filetype == "image/jpeg") || ( $filetype == "image/pjpeg")) && ($filesize  < 200))
-        {
+       // if ((( $filetype == "image/png") || ( $filetype == "image/jpeg") || ( $filetype == "image/pjpeg")) && ($filesize  < 200))
+      //  {
             if ($fileError > 0)
             {
                 $data = ['message'=> " $fileError ", 'status'=>404];
@@ -67,10 +67,9 @@
 
                         $query_insert = mysqli_query($conn, $sql);
                         if($query_insert){
-                            // $data = ['message'=>'Success', 'status'=>200];
-                            // echo json_encode($data);
-                            // return ;
-                            header("location: ../home.php");
+                            $data = ['message'=>'Success', 'status'=>200];
+                            echo json_encode($data);
+                            return ;
                         }
                         else{
                             $data = ['message'=>'Failed to Create Posts', 'status'=>404];
@@ -86,18 +85,21 @@
                     
                 }
             }
-        }
-        else
-        {
-            $data = ['message'=>'Invalid File', 'status'=>404];
-                        echo json_encode($data);
-                        return ;
-        }
+       // }
+       // else
+       // {
+        //    $data = ['message'=>'Invalid File', 'status'=>404];
+        //                echo json_encode($data);
+       //                 return ;
+       // }
 
-    }
-    else{
-        $data = ['message'=>'Button was not set', 'status'=>404];
-        echo json_encode($data);
-        return ;
-    }
+    // }
+    // else{
+    //     $data = ['message'=>'Button was not set', 'status'=>404];
+    //     echo json_encode($data);
+    //     return ;
+    // }
+
 ?>
+
+
